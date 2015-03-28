@@ -1,4 +1,4 @@
-package fabertelecom.fabergroup;
+package fabertelecom.fabergroup.Activities;
 
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
@@ -9,33 +9,33 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import fabertelecom.fabergroup.R;
 
-public class LoginActivity extends ActionBarActivity {
+
+public class MainActivity extends ActionBarActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        setContentView(R.layout.activity_main);
 
-        Button accederButton = (Button) findViewById(R.id.acceder);
-        Button cancelarButton = (Button) findViewById(R.id.cancelar);
+        Button loginButton = (Button) findViewById(R.id.login);
+        Button registroButton = (Button) findViewById(R.id.registro);
 
-        accederButton.setOnClickListener(new View.OnClickListener() {
+        registroButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(LoginActivity.this,TareasActivity.class);
-                startActivity(i);
-                //Toast toast = Toast.makeText(LoginActivity.this, "Función sin implementar todavía", Toast.LENGTH_SHORT);
-                //toast.show();
+                Toast toast = Toast.makeText(MainActivity.this, "Función sin implementar todavía", Toast.LENGTH_SHORT);
+                toast.show();
             }
         });
 
 
 
-        cancelarButton.setOnClickListener(new View.OnClickListener() {
+        loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(LoginActivity.this,MainActivity.class);
+                Intent i = new Intent(MainActivity.this,LoginActivity.class);
                 startActivity(i);
             }
         });
@@ -45,7 +45,7 @@ public class LoginActivity extends ActionBarActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_login, menu);
+        getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
 

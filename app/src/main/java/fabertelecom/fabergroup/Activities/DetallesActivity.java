@@ -1,4 +1,4 @@
-package fabertelecom.fabergroup;
+package fabertelecom.fabergroup.Activities;
 
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
@@ -8,6 +8,8 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import fabertelecom.fabergroup.R;
 
 
 public class DetallesActivity extends ActionBarActivity {

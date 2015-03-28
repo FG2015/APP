@@ -1,4 +1,4 @@
-package fabertelecom.fabergroup;
+package fabertelecom.fabergroup.Activities;
 
 import android.provider.MediaStore;
 import android.support.v7.app.ActionBarActivity;
@@ -8,6 +8,8 @@ import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
+
+import fabertelecom.fabergroup.R;
 
 
 public class NuevaTareaActivity extends ActionBarActivity {

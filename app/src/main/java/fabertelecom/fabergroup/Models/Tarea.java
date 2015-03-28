@@ -1,4 +1,4 @@
-package fabertelecom.fabergroup;
+package fabertelecom.fabergroup.Models;
 
 import android.graphics.Bitmap;
 
@@ -6,7 +6,7 @@ import android.graphics.Bitmap;
  * Created by Aitor on 26/03/2015.
  */
 
-public class Tareas {
+public class Tarea {
 
     String titulo;
     String cliente;
@@ -63,7 +63,7 @@ public class Tareas {
         this.imagen = imagen;
     }
 
-    public Tareas(String titulo, String cliente, String rmapres) {
+    public Tarea(String titulo, String cliente, String rmapres) {
         this.titulo = titulo;
         this.cliente = cliente;
         this.rmapres = rmapres;
