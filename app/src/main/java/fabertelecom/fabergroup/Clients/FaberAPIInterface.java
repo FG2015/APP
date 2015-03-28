@@ -15,6 +15,9 @@ public interface FaberAPIInterface {
     @POST("/auth/sign_in")
     void loginUser(@Query("email") String email, @Query("password") String password, Callback<JsonElement> cb);
 
+    @POST("/auth/sign_up")
+    void signUpUser(@Query("email") String email, @Query("password") String password, @Query("name") String name, Callback<JsonElement> cb);
+
     // CREATE TASK
     // GET TASK
 }

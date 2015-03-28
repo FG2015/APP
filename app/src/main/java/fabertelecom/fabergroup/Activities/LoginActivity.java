@@ -8,6 +8,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
 
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
@@ -22,23 +24,36 @@ import retrofit.client.Response;
 
 
 public class LoginActivity extends ActionBarActivity {
+    Button accederButton;
+    Button cancelarButton;
+    EditText emailEditText;
+    EditText passwordEditText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        Button accederButton = (Button) findViewById(R.id.acceder);
-        Button cancelarButton = (Button) findViewById(R.id.cancelar);
+        findViews();
 
-        loginUserWithEmail("pepibumur@gmail.com", "faberapp");
         accederButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(LoginActivity.this,TareasActivity.class);
-                startActivity(i);
-                //Toast toast = Toast.makeText(LoginActivity.this, "Función sin implementar todavía", Toast.LENGTH_SHORT);
-                //toast.show();
+
+                String email = emailEditText.getText().toString();
+                String password = passwordEditText.getText().toString();
+
+                if(email!=null&&!email.equals("")){
+                    if(password!=null&&!password.equals("")){
+                        loginUserWithEmail(email,password);
+                    }else{
+                        Toast toast = Toast.makeText(LoginActivity.this, "Campo contraseña vacío", Toast.LENGTH_SHORT);
+                        toast.show();
+                    }
+                }else{
+                    Toast toast = Toast.makeText(LoginActivity.this, "Campo usuario vacío", Toast.LENGTH_SHORT);
+                    toast.show();
+                }
             }
         });
 
@@ -49,6 +64,13 @@ public class LoginActivity extends ActionBarActivity {
                 startActivity(i);
             }
         });
+    }
+
+    private void findViews() {
+        accederButton = (Button) findViewById(R.id.acceder);
+        cancelarButton = (Button) findViewById(R.id.cancelar);
+        emailEditText = (EditText) findViewById(R.id.ET_usuario);
+        passwordEditText = (EditText) findViewById(R.id.ET_password);
     }
 
 
@@ -84,12 +106,28 @@ public class LoginActivity extends ActionBarActivity {
                 JsonObject data = json.getAsJsonObject();
                 String token = data.get("token").getAsString();
                 APIClient.saveAuth(email, token, LoginActivity.this);
-                //TODO - Open list activity
+                Intent i = new Intent(LoginActivity.this,TareasActivity.class);
+                startActivity(i);
             }
 
             @Override
             public void failure(RetrofitError error) {
-                //TODO - Show error message
+                switch(error.getResponse().getStatus()){
+                    case 404:
+                        Toast toast404 = Toast.makeText(LoginActivity.this, "Usuario no existe", Toast.LENGTH_SHORT);
+                        toast404.show();
+                        break;
+
+                    case 401:
+                        Toast toast401 = Toast.makeText(LoginActivity.this, "Password no válida", Toast.LENGTH_SHORT);
+                        toast401.show();
+                        break;
+
+                    case 400:
+                        Toast toast400 = Toast.makeText(LoginActivity.this, "Error general. Inténtalo de nuevo", Toast.LENGTH_SHORT);
+                        toast400.show();
+                        break;
+                }
             }
         });
     }

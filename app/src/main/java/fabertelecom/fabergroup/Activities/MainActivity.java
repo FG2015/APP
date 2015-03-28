@@ -25,8 +25,8 @@ public class MainActivity extends ActionBarActivity {
         registroButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast toast = Toast.makeText(MainActivity.this, "Función sin implementar todavía", Toast.LENGTH_SHORT);
-                toast.show();
+                Intent i = new Intent(MainActivity.this,RegistroActivity.class);
+                startActivity(i);
             }
         });
 
