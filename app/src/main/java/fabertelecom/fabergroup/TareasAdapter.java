@@ -29,16 +29,11 @@ public class TareasAdapter extends ArrayAdapter<Tareas> {
         TextView titulo = (TextView) convertView.findViewById(R.id.titulo);
         TextView cliente = (TextView) convertView.findViewById(R.id.cliente);
         TextView rmapres = (TextView) convertView.findViewById(R.id.rmapres);
-        ImageView imagen = (ImageView) convertView.findViewById(R.id.imagen);
         Tareas tareas = this.getItem(position);
         titulo.setText(tareas.getTitulo());
         cliente.setText(tareas.getCliente());
         rmapres.setText(tareas.getRmapres());
-        if(tareas.getImagen()!=null) {
-            imagen.setImageBitmap(tareas.getImagen());
-        } else {
-            imagen.setImageResource(R.drawable.ic_launcher);
-        }
+
         return convertView;
     }
 }

@@ -24,6 +24,18 @@
             android:name=".TareasActivity"
             android:label="@string/title_activity_tareas" >
         </activity>
+        <activity
+            android:name=".DetallesActivity"
+            android:label="@string/title_activity_detalles" >
+        </activity>
+        <activity
+            android:name=".RegistroActivity"
+            android:label="@string/title_activity_registro" >
+        </activity>
+        <activity
+            android:name=".NuevaTareaActivity"
+            android:label="@string/title_activity_nueva_tarea" >
+        </activity>
     </application>
 
 </manifest>
