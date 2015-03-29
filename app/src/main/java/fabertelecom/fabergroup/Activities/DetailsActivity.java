@@ -41,7 +41,11 @@ public class DetailsActivity extends ActionBarActivity {
     TextView problemaTextView;
     EditText solucionEditText;
     Button mapaButton;
-    LinearLayout solucionar;
+    LinearLayout solucionarLayout;
+    LinearLayout resueltoLayout;
+    LinearLayout comenzarLayout;
+    Button comenzarButton;
+    Button resolverButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +54,24 @@ public class DetailsActivity extends ActionBarActivity {
         taskId = getIntent().getStringExtra(KEY_INTENT_TASK_ID);
         findViews();
         updateTaskInfo();
+        setOnClickListeners();
+    }
+
+    private void setOnClickListeners() {
+        comenzarButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startTask();
+            }
+        });
+
+        resolverButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+               String solution = solucionEditText.getText().toString();
+               resolveTask(solution);
+            }
+        });
     }
 
     private void findViews() {
@@ -61,6 +83,11 @@ public class DetailsActivity extends ActionBarActivity {
         problemaTextView = (TextView) findViewById(R.id.problema2_text_view);
         solucionEditText = (EditText) findViewById(R.id.solucion_edit_text);
         mapaButton = (Button) findViewById(R.id.mapa_button);
+        solucionarLayout = (LinearLayout) findViewById(R.id.solucionar_layout);
+        resueltoLayout = (LinearLayout)findViewById(R.id.resuelto_layout);
+        comenzarLayout = (LinearLayout)findViewById(R.id.comenzar_layout);
+        comenzarButton = (Button)findViewById(R.id.comenzar_button);
+        resolverButton = (Button)findViewById(R.id.resolver_button);
     }
 
 
@@ -93,8 +120,6 @@ public class DetailsActivity extends ActionBarActivity {
 
     private void updateViewContent()
     {
-        //TODO - Fill the views with the task content
-
         tituloTextView.setText(task.getName());
         clienteTextView.setText(task.getClient_name());
         rmapresTextView.setText(task.getRma());
@@ -109,13 +134,26 @@ public class DetailsActivity extends ActionBarActivity {
         hfinTextView.setText(hour_fin_text);
         problemaTextView.setText(task.getProblem());
 
+
         mapaButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 openMaps();
             }
         });
+        comenzarLayout.setVisibility(View.INVISIBLE);
+        resueltoLayout.setVisibility(View.INVISIBLE);
+        solucionarLayout.setVisibility(View.INVISIBLE);
 
+        if (task.getStatus().equals("idle")) {
+           comenzarLayout.setVisibility(View.VISIBLE);
+        }
+        else if (task.getStatus().equals("working")) {
+            solucionarLayout.setVisibility(View.VISIBLE);
+        }
+        else {
+            resueltoLayout.setVisibility(View.VISIBLE);
+        }
     }
 
     private void openMaps()
@@ -149,11 +187,27 @@ public class DetailsActivity extends ActionBarActivity {
         });
     }
 
-    private void resolveTask(String solution) {
-        APIClient.getInstance().resolveTask(taskId, solution, new Callback<JsonElement>() {
+    private void startTask() {
+        APIClient.getInstance().startTask(taskId, new Callback<Task>() {
             @Override
-            public void success(JsonElement jsonElement, Response response) {
-                //TODO
+            public void success(Task task, Response response) {
+                DetailsActivity.this.task = task;
+                updateViewContent();
+            }
+
+            @Override
+            public void failure(RetrofitError error) {
+               //TODO
+            }
+        });
+    }
+
+    private void resolveTask(String solution) {
+        APIClient.getInstance().resolveTask(taskId, solution, new Callback<Task>() {
+            @Override
+            public void success(Task jsonElement, Response response) {
+                DetailsActivity.this.task = task;
+                updateViewContent();
             }
 
             @Override

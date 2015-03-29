@@ -19,7 +19,10 @@ public interface FaberAPIInterface {
     void getTask(@Path("task") String taskId, Callback<Task> cb);
 
     @POST("/api/tasks/{task}/resolve")
-    void resolveTask(@Path("task") String taskId, @Query("solution") String solution, Callback<JsonElement> cb);
+    void resolveTask(@Path("task") String taskId, @Query("solution") String solution, Callback<Task> cb);
+
+    @POST("/api/tasks/{task}/start")
+    void startTask(@Path("task") String taskId, Callback<Task> cb);
 
 
     @POST("/auth/sign_in")
