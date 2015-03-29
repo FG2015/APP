@@ -7,12 +7,16 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 
 import com.google.gson.JsonElement;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import fabertelecom.fabergroup.Clients.APIClient;
 import fabertelecom.fabergroup.Models.Task;
@@ -31,9 +35,9 @@ public class DetailsActivity extends ActionBarActivity {
     TextView tituloTextView;
     TextView clienteTextView;
     TextView rmapresTextView;
-    EditText hinicioEditText;
-    EditText hfinEditText;
-    EditText problemaEditText;
+    TextView hinicioTextView;
+    TextView hfinTextView;
+    TextView problemaTextView;
     EditText solucionEditText;
     Button mapaButton;
     CheckBox tareacompletadaCheckBox;
@@ -51,9 +55,9 @@ public class DetailsActivity extends ActionBarActivity {
         tituloTextView = (TextView) findViewById(R.id.titulo_text_view);
         clienteTextView = (TextView) findViewById(R.id.cliente_text_view);
         rmapresTextView = (TextView) findViewById(R.id.rmapres_text_view);
-        hinicioEditText = (EditText) findViewById(R.id.hinicio_edit_text);
-        hfinEditText = (EditText) findViewById(R.id.hfin_edit_text);
-        problemaEditText = (EditText) findViewById(R.id.problema_edit_text);
+        hinicioTextView = (EditText) findViewById(R.id.hinicio2_text_view);
+        hfinTextView = (EditText) findViewById(R.id.hfin2_text_view);
+        problemaTextView = (EditText) findViewById(R.id.problema2_text_view);
         solucionEditText = (EditText) findViewById(R.id.solucion_edit_text);
         mapaButton = (Button) findViewById(R.id.mapa_button);
         tareacompletadaCheckBox = (CheckBox) findViewById(R.id.tareacompletada_check_box);
@@ -62,19 +66,13 @@ public class DetailsActivity extends ActionBarActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_detalles, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
         }
@@ -96,6 +94,27 @@ public class DetailsActivity extends ActionBarActivity {
     private void updateViewContent()
     {
         //TODO - Fill the views with the task content
+
+        tituloTextView.setText(task.getName());
+        clienteTextView.setText(task.getClient_name());
+        rmapresTextView.setText(task.getRma());
+
+        Date date_ini =  new Date(task.getStart_date()*1000);
+        Date date_fin =  new Date(task.getEnd_date()*1000);
+        SimpleDateFormat hour_format = new SimpleDateFormat("HH:mm");
+        String hour_ini_text = hour_format.format(date_ini);
+        String hour_fin_text = hour_format.format(date_fin);
+
+        hinicioTextView.setText(hour_ini_text);
+        hfinTextView.setText(hour_fin_text);
+        problemaTextView.setText(task.getProblem());
+
+        mapaButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openMaps();
+            }
+        });
 
     }
 

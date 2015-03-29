@@ -41,42 +41,49 @@
 
             <LinearLayout
                 android:orientation="horizontal"
-                android:layout_width="fill_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:text="Hora Inicio: "
-                    android:id="@+id/hinicio_text_view" />
-
-                <EditText
+                <LinearLayout
+                    android:orientation="vertical"
                     android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="time"
-                    android:ems="10"
-                    android:id="@+id/hinicio_edit_text" />
-            </LinearLayout>
+                    android:layout_height="wrap_content">
 
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="Hora Inicio: "
+                        android:id="@+id/hinicio_text_view" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:text="Hora Fin: "
-                    android:id="@+id/hfin_text_view" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="Hora Fin: "
+                        android:id="@+id/hfin_text_view" />
 
-                <EditText
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="vertical"
                     android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="time"
-                    android:ems="10"
-                    android:id="@+id/hfin_edit_text" />
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="Aquí aparece la hora de inicio"
+                        android:id="@+id/hinicio2_text_view" />
+
+                    <TextView
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="Aquí aparece la hora de fin"
+                        android:id="@+id/hfin2_text_view" />
+                </LinearLayout>
             </LinearLayout>
 
             <TextView
@@ -87,10 +94,12 @@
                 android:layout_marginTop="15dp"
                 android:id="@+id/problema_text_view" />
 
-            <EditText
+            <TextView
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/problema_edit_text" />
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Aquí se describe el problema"
+                android:id="@+id/problema2_text_view" />
 
             <Button
                 android:layout_width="fill_parent"
