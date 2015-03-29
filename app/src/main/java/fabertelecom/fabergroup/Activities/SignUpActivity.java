@@ -129,15 +129,13 @@ public class SignUpActivity extends ActionBarActivity {
                         Toast toast404 = Toast.makeText(SignUpActivity.this, "Usuario no existe", Toast.LENGTH_SHORT);
                         toast404.show();
                         break;
-
                     case 401:
                         Toast toast401 = Toast.makeText(SignUpActivity.this, "Password no válida", Toast.LENGTH_SHORT);
                         toast401.show();
                         break;
-
-                    case 400:
-                        Toast toast400 = Toast.makeText(SignUpActivity.this, "Error general. Inténtalo de nuevo", Toast.LENGTH_SHORT);
-                        toast400.show();
+                    default:
+                        Toast toastdefault = Toast.makeText(RegistroActivity.this, "Error general. Inténtalo de nuevo", Toast.LENGTH_SHORT);
+                        toastdefault.show();
                         break;
                 }
             }

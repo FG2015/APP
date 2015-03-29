@@ -8,7 +8,8 @@
     android:paddingLeft="16dp"
     android:paddingRight="16dp"
     android:paddingTop="16dp"
-    tools:context="fabertelecom.fabergroup.Activities.SignUpActivity" >
+    android:background="@color/azulOscuro"
+    tools:context="fabertelecom.fabergroup.Activities.RegistroActivity" >
 
     <TableLayout
         android:id="@+id/TableLayout1"
@@ -28,6 +29,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textColor="@color/blanco"
+                android:textStyle="bold"
                 android:text="Registro" />
 
         </TableRow>
@@ -43,6 +46,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:layout_gravity="center_vertical"
+                android:textColor="@color/blanco"
                 android:text="Nombre" />
 
             <EditText
@@ -50,6 +54,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:textColor="@color/blanco"
+                android:textCursorDrawable="@color/blanco"
                 android:ems="10"/>
 
         </TableRow>
@@ -65,6 +71,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:layout_gravity="center_vertical"
+                android:textColor="@color/blanco"
                 android:text="E-mail" />
 
             <EditText
@@ -73,6 +80,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:ems="10"
+                android:textColor="@color/blanco"
+                android:textCursorDrawable="@color/blanco"
                 android:inputType="textEmailAddress" />
         </TableRow>
 
@@ -87,6 +96,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:layout_gravity="center_vertical"
+                android:textColor="@color/blanco"
                 android:text="Contraseña" />
 
             <EditText
@@ -95,6 +105,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:ems="10"
+                android:textColor="@color/blanco"
+                android:textCursorDrawable="@color/blanco"
                 android:inputType="textPassword" >
 
                 <requestFocus />
@@ -113,6 +125,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:layout_gravity="center_vertical"
+                android:textColor="@color/blanco"
                 android:text="Rep. Contraseña"/>
 
             <EditText
@@ -121,6 +134,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:ems="10"
+                android:textColor="@color/blanco"
+                android:textCursorDrawable="@color/blanco"
                 android:inputType="textPassword" />
 
         </TableRow>
@@ -129,7 +144,7 @@
     <LinearLayout
         android:id="@+id/LinearLayout2"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content" >
+        android:layout_height="wrap_content">
 
         <Button
             android:id="@+id/aceptar_button"
