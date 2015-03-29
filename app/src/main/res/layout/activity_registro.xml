@@ -30,6 +30,7 @@
                 android:layout_weight="1"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:textColor="@color/blanco"
+                android:textStyle="bold"
                 android:text="Registro" />
 
         </TableRow>
