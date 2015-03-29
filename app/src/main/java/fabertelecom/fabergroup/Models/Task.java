@@ -15,6 +15,16 @@ public class Task {
     String client_name;
     String client_phone;
 
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    String status;
+
     public String getId() {
         return id;
     }
@@ -22,16 +32,6 @@ public class Task {
     public void setId(String id) {
         this.id = id;
     }
-
-    public Boolean getResolved() {
-        return resolved;
-    }
-
-    public void setResolved(Boolean resolved) {
-        this.resolved = resolved;
-    }
-
-    Boolean resolved;
 
     public Float getClient_latitude() {
         return client_latitude;
