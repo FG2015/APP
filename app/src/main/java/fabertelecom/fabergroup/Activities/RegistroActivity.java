@@ -135,9 +135,9 @@ public class RegistroActivity extends ActionBarActivity {
                         toast401.show();
                         break;
 
-                    case 400:
-                        Toast toast400 = Toast.makeText(RegistroActivity.this, "Error general. Inténtalo de nuevo", Toast.LENGTH_SHORT);
-                        toast400.show();
+                    default:
+                        Toast toastdefault = Toast.makeText(RegistroActivity.this, "Error general. Inténtalo de nuevo", Toast.LENGTH_SHORT);
+                        toastdefault.show();
                         break;
                 }
             }

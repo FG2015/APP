@@ -30,8 +30,6 @@ public class MainActivity extends ActionBarActivity {
             }
         });
 
-
-
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
