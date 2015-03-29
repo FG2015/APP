@@ -14,6 +14,7 @@ public class Task {
     String solution;
     String client_name;
     String client_phone;
+    String status;
 
     public String getStatus() {
         return status;
@@ -22,8 +23,6 @@ public class Task {
     public void setStatus(String status) {
         this.status = status;
     }
-
-    String status;
 
     public String getId() {
         return id;

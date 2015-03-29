@@ -55,9 +55,9 @@ public class DetailsActivity extends ActionBarActivity {
         tituloTextView = (TextView) findViewById(R.id.titulo_text_view);
         clienteTextView = (TextView) findViewById(R.id.cliente_text_view);
         rmapresTextView = (TextView) findViewById(R.id.rmapres_text_view);
-        hinicioTextView = (EditText) findViewById(R.id.hinicio2_text_view);
-        hfinTextView = (EditText) findViewById(R.id.hfin2_text_view);
-        problemaTextView = (EditText) findViewById(R.id.problema2_text_view);
+        hinicioTextView = (TextView) findViewById(R.id.hinicio2_text_view);
+        hfinTextView = (TextView) findViewById(R.id.hfin2_text_view);
+        problemaTextView = (TextView) findViewById(R.id.problema2_text_view);
         solucionEditText = (EditText) findViewById(R.id.solucion_edit_text);
         mapaButton = (Button) findViewById(R.id.mapa_button);
         tareacompletadaCheckBox = (CheckBox) findViewById(R.id.tareacompletada_check_box);
@@ -120,9 +120,8 @@ public class DetailsActivity extends ActionBarActivity {
 
     private void openMaps()
     {
-        String url = "comgooglemaps://?center="+task.getClient_latitude()+","+task.getClient_longitude()+"&zoom=12";
-        Intent i = new Intent(Intent.ACTION_VIEW);
-        i.setData(Uri.parse(url));
+        String url = "http://maps.google.com/maps?q="+task.getClient_latitude()+","+task.getClient_longitude()+"("+task.getClient_name()+")";
+        Intent i = new Intent(Intent.ACTION_VIEW,Uri.parse(url));
         startActivity(i);
     }
 
