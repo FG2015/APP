@@ -12,7 +12,7 @@ import android.widget.RadioButton;
 import fabertelecom.fabergroup.R;
 
 
-public class NuevaTareaActivity extends ActionBarActivity {
+public class NewTaskActivity extends ActionBarActivity {
 
     EditText titulo_EditText;
     EditText cliente_EditText;

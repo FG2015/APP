@@ -7,7 +7,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
 
 import fabertelecom.fabergroup.R;
 
@@ -25,12 +24,10 @@ public class MainActivity extends ActionBarActivity {
         registroButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(MainActivity.this,RegistroActivity.class);
+                Intent i = new Intent(MainActivity.this,SignUpActivity.class);
                 startActivity(i);
             }
         });
-
-
 
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override

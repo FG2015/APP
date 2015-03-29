@@ -19,7 +19,7 @@ import retrofit.Callback;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
 
-public class RegistroActivity extends ActionBarActivity {
+public class SignUpActivity extends ActionBarActivity {
 
     EditText nombre_EditText;
     EditText email_EditText;
@@ -51,27 +51,27 @@ public class RegistroActivity extends ActionBarActivity {
                                     if(password.length()>=8) {
                                         signUpUser(email, password, nombre);
                                         }else{
-                                            Toast toast = Toast.makeText(RegistroActivity.this, "La contraseña debe tener como mínimo 8 caracteres", Toast.LENGTH_SHORT);
+                                            Toast toast = Toast.makeText(SignUpActivity.this, "La contraseña debe tener como mínimo 8 caracteres", Toast.LENGTH_SHORT);
                                             toast.show();
                                         }
                                     }else {
-                                        Toast toast = Toast.makeText(RegistroActivity.this, "Contraseñas no coinciden", Toast.LENGTH_SHORT);
+                                        Toast toast = Toast.makeText(SignUpActivity.this, "Contraseñas no coinciden", Toast.LENGTH_SHORT);
                                         toast.show();
                                     }
                                 }else{
-                                    Toast toast = Toast.makeText(RegistroActivity.this, "Campo repite contraseña vacío", Toast.LENGTH_SHORT);
+                                    Toast toast = Toast.makeText(SignUpActivity.this, "Campo repite contraseña vacío", Toast.LENGTH_SHORT);
                                     toast.show();
                                 }
                             } else {
-                                Toast toast = Toast.makeText(RegistroActivity.this, "Campo contraseña vacío", Toast.LENGTH_SHORT);
+                                Toast toast = Toast.makeText(SignUpActivity.this, "Campo contraseña vacío", Toast.LENGTH_SHORT);
                                 toast.show();
                             }
                         } else {
-                            Toast toast = Toast.makeText(RegistroActivity.this, "Campo E-mail vacío", Toast.LENGTH_SHORT);
+                            Toast toast = Toast.makeText(SignUpActivity.this, "Campo E-mail vacío", Toast.LENGTH_SHORT);
                             toast.show();
                         }
                     } else {
-                        Toast toast = Toast.makeText(RegistroActivity.this, "Campo nombre vacío", Toast.LENGTH_SHORT);
+                        Toast toast = Toast.makeText(SignUpActivity.this, "Campo nombre vacío", Toast.LENGTH_SHORT);
                         toast.show();
                         }
             }
@@ -80,7 +80,7 @@ public class RegistroActivity extends ActionBarActivity {
         cancelar_Button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(RegistroActivity.this,MainActivity.class);
+                Intent i = new Intent(SignUpActivity.this,MainActivity.class);
                 startActivity(i);
             }
         });
@@ -117,8 +117,8 @@ public class RegistroActivity extends ActionBarActivity {
             public void success(JsonElement json, Response response) {
                 JsonObject data = json.getAsJsonObject();
                 String token = data.get("token").getAsString();
-                APIClient.saveAuth(email, token, RegistroActivity.this);
-                Intent i = new Intent(RegistroActivity.this, TareasActivity.class);
+                APIClient.saveAuth(email, token, SignUpActivity.this);
+                Intent i = new Intent(SignUpActivity.this, TasksActivity.class);
                 startActivity(i);
             }
 
@@ -126,17 +126,17 @@ public class RegistroActivity extends ActionBarActivity {
             public void failure(RetrofitError error) {
                 switch (error.getResponse().getStatus()) {
                     case 404:
-                        Toast toast404 = Toast.makeText(RegistroActivity.this, "Usuario no existe", Toast.LENGTH_SHORT);
+                        Toast toast404 = Toast.makeText(SignUpActivity.this, "Usuario no existe", Toast.LENGTH_SHORT);
                         toast404.show();
                         break;
 
                     case 401:
-                        Toast toast401 = Toast.makeText(RegistroActivity.this, "Password no válida", Toast.LENGTH_SHORT);
+                        Toast toast401 = Toast.makeText(SignUpActivity.this, "Password no válida", Toast.LENGTH_SHORT);
                         toast401.show();
                         break;
 
                     case 400:
-                        Toast toast400 = Toast.makeText(RegistroActivity.this, "Error general. Inténtalo de nuevo", Toast.LENGTH_SHORT);
+                        Toast toast400 = Toast.makeText(SignUpActivity.this, "Error general. Inténtalo de nuevo", Toast.LENGTH_SHORT);
                         toast400.show();
                         break;
                 }

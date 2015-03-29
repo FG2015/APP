@@ -3,7 +3,6 @@ package fabertelecom.fabergroup.Activities;
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -13,8 +12,6 @@ import android.widget.Toast;
 
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-
-import org.json.JSONObject;
 
 import fabertelecom.fabergroup.Clients.APIClient;
 import fabertelecom.fabergroup.R;
@@ -106,7 +103,7 @@ public class LoginActivity extends ActionBarActivity {
                 JsonObject data = json.getAsJsonObject();
                 String token = data.get("token").getAsString();
                 APIClient.saveAuth(email, token, LoginActivity.this);
-                Intent i = new Intent(LoginActivity.this,TareasActivity.class);
+                Intent i = new Intent(LoginActivity.this,TasksActivity.class);
                 startActivity(i);
             }
 

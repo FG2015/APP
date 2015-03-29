@@ -24,19 +24,19 @@
             android:label="@string/title_activity_login" >
         </activity>
         <activity
-            android:name=".Activities.TareasActivity"
+            android:name=".Activities.TasksActivity"
             android:label="@string/title_activity_tareas" >
         </activity>
         <activity
-            android:name=".Activities.DetallesActivity"
+            android:name=".Activities.DetailsActivity"
             android:label="@string/title_activity_detalles" >
         </activity>
         <activity
-            android:name=".Activities.RegistroActivity"
+            android:name=".Activities.SignUpActivity"
             android:label="@string/title_activity_registro" >
         </activity>
         <activity
-            android:name=".Activities.NuevaTareaActivity"
+            android:name=".Activities.NewTaskActivity"
             android:label="@string/title_activity_nueva_tarea" >
         </activity>
     </application>

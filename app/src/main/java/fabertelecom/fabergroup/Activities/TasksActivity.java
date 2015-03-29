@@ -6,16 +6,16 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 import java.util.List;
+import fabertelecom.fabergroup.Adapters.TasksAdapter;
 import fabertelecom.fabergroup.Clients.APIClient;
+import fabertelecom.fabergroup.Models.Task;
 import fabertelecom.fabergroup.R;
-import fabertelecom.fabergroup.Models.Tarea;
-import fabertelecom.fabergroup.Adapters.TareasAdapter;
 import retrofit.Callback;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
 
 
-public class TareasActivity extends ListActivity {
+public class TasksActivity extends ListActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,11 +63,11 @@ public class TareasActivity extends ListActivity {
     public void updateTasks()
     {
         showLoading();
-        APIClient.getInstance().getTasks(new Callback<List<Tarea>>() {
+        APIClient.getInstance().getTasks(new Callback<List<Task>>() {
             @Override
-            public void success(List<Tarea> tareas, Response response) {
+            public void success(List<Task> tasks, Response response) {
                 hideLoading();
-                TareasAdapter adaptador = new TareasAdapter(TareasActivity.this, tareas);
+                TasksAdapter adaptador = new TasksAdapter(TasksActivity.this, tasks);
                 setListAdapter(adaptador);
             }
 

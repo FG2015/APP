@@ -12,7 +12,7 @@ import android.widget.TextView;
 import fabertelecom.fabergroup.R;
 
 
-public class DetallesActivity extends ActionBarActivity {
+public class DetailsActivity extends ActionBarActivity {
 
     TextView tituloTextView;
     TextView clienteTextView;
