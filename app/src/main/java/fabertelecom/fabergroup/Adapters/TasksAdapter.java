@@ -7,6 +7,10 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
+import org.w3c.dom.Text;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import fabertelecom.fabergroup.Models.Task;
@@ -31,12 +35,30 @@ public class TasksAdapter extends ArrayAdapter<Task> {
         TextView titulo = (TextView) convertView.findViewById(R.id.title);
         TextView cliente = (TextView) convertView.findViewById(R.id.cliente);
         TextView rmapres = (TextView) convertView.findViewById(R.id.rmapres);
+        TextView hinicio = (TextView) convertView.findViewById(R.id.hinicio_text_view);
+        TextView hfin = (TextView) convertView.findViewById(R.id.hfin_text_view);
+
         Task tareas = this.getItem(position);
         titulo.setText(tareas.getName());
         cliente.setText(tareas.getClient_name());
         rmapres.setText(tareas.getRma());
 
+        Date date_ini =  new Date(tareas.getStart_date()*1000);
+        Date date_fin =  new Date(tareas.getEnd_date()*1000);
+
+        SimpleDateFormat hour_format = new SimpleDateFormat("HH:mm");
+        String hour_ini_text = hour_format.format(date_ini);
+        String hour_fin_text = hour_format.format(date_fin);
+
+        hinicio.setText(hour_ini_text);
+        hfin.setText(hour_fin_text);
+
         return convertView;
+    }
+
+    public String getTaskId(int position) {
+        Task tarea = this.getItem(position);
+        return tarea.getId();
     }
 }
 

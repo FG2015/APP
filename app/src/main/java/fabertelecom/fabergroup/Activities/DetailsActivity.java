@@ -8,12 +8,23 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import java.util.List;
+
+import fabertelecom.fabergroup.Adapters.TasksAdapter;
+import fabertelecom.fabergroup.Clients.APIClient;
+import fabertelecom.fabergroup.Models.Task;
 import fabertelecom.fabergroup.R;
+import retrofit.Callback;
+import retrofit.RetrofitError;
+import retrofit.client.Response;
 
 
 public class DetailsActivity extends ActionBarActivity {
 
+    public static final String KEY_INTENT_TASK_ID = "task_id";
+    String taskId;
     TextView tituloTextView;
     TextView clienteTextView;
     TextView rmapresTextView;
@@ -28,6 +39,7 @@ public class DetailsActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detalles);
+        taskId = getIntent().getStringExtra(KEY_INTENT_TASK_ID);
         findViews();
     }
 
@@ -65,4 +77,16 @@ public class DetailsActivity extends ActionBarActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+    public void showLoading()
+    {
+        //TODO
+    }
+
+    public void hideLoading()
+    {
+        //TODO
+    }
+
+
 }

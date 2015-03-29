@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ListView;
 import android.widget.Toast;
 import java.util.List;
 import fabertelecom.fabergroup.Adapters.TasksAdapter;
@@ -22,6 +24,18 @@ public class TasksActivity extends ListActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         updateTasks();
+
+
+    }
+
+    @Override
+    protected void onListItemClick(ListView l, View v, int position, long id) {
+        super.onListItemClick(l, v, position, id);
+        Intent i = new Intent(TasksActivity.this,DetailsActivity.class);
+        TasksAdapter adapter = (TasksAdapter) getListAdapter();
+        String taskId = adapter.getTaskId(position);
+        i.putExtra(DetailsActivity.KEY_INTENT_TASK_ID, taskId);
+        startActivity(i);
     }
 
     @Override
@@ -34,7 +48,7 @@ public class TasksActivity extends ListActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
         if (id == R.id.action_newtask) {
-            Intent i = new Intent(TareasActivity.this,NuevaTareaActivity.class);
+            Intent i = new Intent(TasksActivity.this,NewTaskActivity.class);
             startActivity(i);
         }
         return super.onOptionsItemSelected(item);
@@ -54,8 +68,6 @@ public class TasksActivity extends ListActivity {
         Toast.makeText(this, alert, Toast.LENGTH_LONG).show();
     }
 
-    //region - Data Source
-
     public void updateTasks()
     {
         showLoading();
@@ -70,7 +82,18 @@ public class TasksActivity extends ListActivity {
             @Override
             public void failure(RetrofitError error) {
                 hideLoading();
-                showAlert("Something failed!");
+                switch(error.getResponse().getStatus()){
+
+                    case 401:
+                        Toast toast401 = Toast.makeText(TasksActivity.this, "Acceso NO autorizado", Toast.LENGTH_SHORT);
+                        toast401.show();
+                        break;
+
+                    default:
+                        Toast toast400 = Toast.makeText(TasksActivity.this, "Error general. Inténtalo de nuevo", Toast.LENGTH_SHORT);
+                        toast400.show();
+                        break;
+                }
             }
         });
     }

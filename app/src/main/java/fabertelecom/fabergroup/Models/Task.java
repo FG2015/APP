@@ -9,10 +9,29 @@ public class Task {
     String rma;
     Long start_date;
     Long end_date;
+    String id;
     String problem;
     String solution;
     String client_name;
     String client_phone;
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public Boolean getResolved() {
+        return resolved;
+    }
+
+    public void setResolved(Boolean resolved) {
+        this.resolved = resolved;
+    }
+
+    Boolean resolved;
 
     public Float getClient_latitude() {
         return client_latitude;

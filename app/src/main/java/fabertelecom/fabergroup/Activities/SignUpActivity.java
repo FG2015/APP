@@ -134,7 +134,7 @@ public class SignUpActivity extends ActionBarActivity {
                         toast401.show();
                         break;
                     default:
-                        Toast toastdefault = Toast.makeText(RegistroActivity.this, "Error general. Inténtalo de nuevo", Toast.LENGTH_SHORT);
+                        Toast toastdefault = Toast.makeText(SignUpActivity.this, "Error general. Inténtalo de nuevo", Toast.LENGTH_SHORT);
                         toastdefault.show();
                         break;
                 }
