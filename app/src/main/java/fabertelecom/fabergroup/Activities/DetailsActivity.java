@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.google.gson.JsonElement;
@@ -40,7 +41,7 @@ public class DetailsActivity extends ActionBarActivity {
     TextView problemaTextView;
     EditText solucionEditText;
     Button mapaButton;
-    CheckBox tareacompletadaCheckBox;
+    LinearLayout solucionar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,7 +61,6 @@ public class DetailsActivity extends ActionBarActivity {
         problemaTextView = (TextView) findViewById(R.id.problema2_text_view);
         solucionEditText = (EditText) findViewById(R.id.solucion_edit_text);
         mapaButton = (Button) findViewById(R.id.mapa_button);
-        tareacompletadaCheckBox = (CheckBox) findViewById(R.id.tareacompletada_check_box);
     }
 
 

@@ -108,25 +108,69 @@
                 android:id="@+id/mapa_button"
                 android:layout_marginTop="15dp"/>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="Solución"
-                android:id="@+id/solucion_text_view"
-                android:layout_marginTop="15dp"/>
-
-            <EditText
+            <LinearLayout
+                android:orientation="vertical"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/solucion_edit_text" />
+                android:id="@+id/solucionar_layout"
+                android:visibility="gone">
 
-            <CheckBox
-                android:layout_width="wrap_content"
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text="Solución"
+                    android:id="@+id/solucion_text_view"
+                    android:layout_marginTop="15dp"/>
+
+                <EditText
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/solucion_edit_text" />
+
+                <Button
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Resolver"
+                    android:id="@+id/resolver_button" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:text="¿Tarea completada?"
-                android:id="@+id/tareacompletada_check_box"
-                android:layout_gravity="right"/>
+                android:id="@+id/comenzar_layout"
+                android:visibility="gone">
+
+                <Button
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Comenzar"
+                    android:id="@+id/comenzar_button" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/resuelto_layout"
+                android:visibility="gone">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text="Solución"
+                    android:id="@+id/solucion2_text_view"
+                    android:layout_marginTop="15dp"/>
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/solucion3_edit_text"
+                    android:text="Aquí va la solucion fija"/>
+            </LinearLayout>
+
         </LinearLayout>
     </LinearLayout>
 
