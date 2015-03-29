@@ -48,10 +48,10 @@ public class RegistroActivity extends ActionBarActivity {
                         if (password != null && !password.equals("")) {
                             if(reppassword!=null&&!reppassword.equals("")) {
                                 if(password.equals(reppassword)) {
-                                    if(password.length()>=6) {
+                                    if(password.length()>=8) {
                                         signUpUser(email, password, nombre);
                                         }else{
-                                            Toast toast = Toast.makeText(RegistroActivity.this, "La contraseña debe tener como mínimo 6 caracteres", Toast.LENGTH_SHORT);
+                                            Toast toast = Toast.makeText(RegistroActivity.this, "La contraseña debe tener como mínimo 8 caracteres", Toast.LENGTH_SHORT);
                                             toast.show();
                                         }
                                     }else {
