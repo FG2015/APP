@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import fabertelecom.fabergroup.Clients.APIClient;
 import fabertelecom.fabergroup.R;
 
 
@@ -19,24 +20,31 @@ public class MainActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Button loginButton = (Button) findViewById(R.id.login);
-        Button registroButton = (Button) findViewById(R.id.registro);
+        APIClient.setupAuth(this);
+        if(APIClient.isLogged(this)) {
+            Intent i = new Intent(MainActivity.this,TasksActivity.class);
+            startActivity(i);
+        }
+        else {
+            Button loginButton = (Button) findViewById(R.id.login);
+            Button registroButton = (Button) findViewById(R.id.registro);
 
-        registroButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(MainActivity.this,SignUpActivity.class);
-                startActivity(i);
-            }
-        });
+            registroButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent i = new Intent(MainActivity.this,SignUpActivity.class);
+                    startActivity(i);
+                }
+            });
 
-        loginButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(MainActivity.this,LoginActivity.class);
-                startActivity(i);
-            }
-        });
+            loginButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent i = new Intent(MainActivity.this,LoginActivity.class);
+                    startActivity(i);
+                }
+            });
+        }
     }
 
 

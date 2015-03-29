@@ -36,6 +36,13 @@ public class APIClient
         return client;
     }
 
+    public static Boolean isLogged(Context context) {
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
+        String email = preferences.getString(KEY_USER_EMAIL, null);
+        String token = preferences.getString(KEY_USER_TOKEN, null);
+        return email != null && token != null;
+    }
+
     public static void setupAuth(Context context)
     {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
