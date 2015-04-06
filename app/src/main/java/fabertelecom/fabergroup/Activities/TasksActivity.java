@@ -1,13 +1,16 @@
 package fabertelecom.fabergroup.Activities;
 
 import android.app.ListActivity;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.google.gson.JsonElement;
@@ -78,14 +81,12 @@ public class TasksActivity extends ListActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void showLoading()
-    {
-        //TODO
+    public void showLoading(){
+     //  ProgressDialog progreso.show(TasksActivity.this,"Cargando...","Espere un momento, por favor",true,true);
     }
 
-    public void hideLoading()
-    {
-        //TODO
+    public void hideLoading(){
+        // TODO
     }
 
     public void showAlert(String alert) {

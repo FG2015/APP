@@ -4,12 +4,15 @@
     tools:context="fabertelecom.fabergroup.Activities.TareasActivity">
 
     <item android:id="@+id/action_newtask" android:title="Nueva tarea"
+        android:icon="@android:drawable/ic_menu_add"
         android:orderInCategory="100" app:showAsAction="never" />
 
     <item android:id="@+id/action_actualizar" android:title="Actualizar"
+        android:icon="@android:drawable/ic_menu_recent_history"
         android:orderInCategory="100" app:showAsAction="never" />
 
     <item android:id="@+id/action_logout" android:title="Cerrar sesión"
+        android:icon="@android:drawable/ic_menu_close_clear_cancel"
         android:orderInCategory="100" app:showAsAction="never" />
 
 </menu>

@@ -37,13 +37,15 @@ public class DetailsActivity extends ActionBarActivity {
     TextView tituloTextView;
     TextView clienteTextView;
     TextView rmapresTextView;
+    TextView fechaTextView;
     TextView hinicioTextView;
     TextView hfinTextView;
     TextView problemaTextView;
     TextView solucionTextView;
     EditText solucionEditText;
     Button mapaButton;
-    Button llamarButton;
+    Button llamarclienteButton;
+    Button llamaroficinaButton;
     LinearLayout verticalLayout;
     LinearLayout solucionarLayout;
     LinearLayout resueltoLayout;
@@ -83,13 +85,15 @@ public class DetailsActivity extends ActionBarActivity {
         tituloTextView = (TextView) findViewById(R.id.titulo_text_view);
         clienteTextView = (TextView) findViewById(R.id.cliente_text_view);
         rmapresTextView = (TextView) findViewById(R.id.rmapres_text_view);
+        fechaTextView = (TextView) findViewById(R.id.fecha2_text_view);
         hinicioTextView = (TextView) findViewById(R.id.hinicio2_text_view);
         hfinTextView = (TextView) findViewById(R.id.hfin2_text_view);
         problemaTextView = (TextView) findViewById(R.id.problema2_text_view);
         solucionTextView = (TextView) findViewById(R.id.solucion3_edit_text);
         solucionEditText = (EditText) findViewById(R.id.solucion_edit_text);
         mapaButton = (Button) findViewById(R.id.mapa_button);
-        llamarButton = (Button) findViewById(R.id.llamar_button);
+        llamarclienteButton = (Button) findViewById(R.id.llamar_cliente_button);
+        llamaroficinaButton = (Button) findViewById(R.id.llamar_oficina_button);
         verticalLayout = (LinearLayout) findViewById(R.id.vertical_layout);
         solucionarLayout = (LinearLayout) findViewById(R.id.solucionar_layout);
         resueltoLayout = (LinearLayout)findViewById(R.id.resuelto_layout);
@@ -139,12 +143,16 @@ public class DetailsActivity extends ActionBarActivity {
         clienteTextView.setText(task.getClient_name());
         rmapresTextView.setText(task.getRma());
 
-        Date date_ini =  new Date(task.getStart_date()*1000);
-        Date date_fin =  new Date(task.getEnd_date()*1000);
+        Date fecha = new Date(task.getStart_date()*1000);
+        Date hora_ini =  new Date(task.getStart_date()*1000);
+        Date hora_fin =  new Date(task.getEnd_date()*1000);
+        SimpleDateFormat fecha_format = new SimpleDateFormat("dd-MM-yyyy");
         SimpleDateFormat hour_format = new SimpleDateFormat("HH:mm");
-        String hour_ini_text = hour_format.format(date_ini);
-        String hour_fin_text = hour_format.format(date_fin);
+        String fecha_text = fecha_format.format(fecha);
+        String hour_ini_text = hour_format.format(hora_ini);
+        String hour_fin_text = hour_format.format(hora_fin);
 
+        fechaTextView.setText(fecha_text);
         hinicioTextView.setText(hour_ini_text);
         hfinTextView.setText(hour_fin_text);
         problemaTextView.setText(task.getProblem());
@@ -158,10 +166,18 @@ public class DetailsActivity extends ActionBarActivity {
             }
         });
 
-        llamarButton.setOnClickListener(new View.OnClickListener() {
+        llamarclienteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 abrirLlamada();
+            }
+        });
+
+        llamaroficinaButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(Intent.ACTION_DIAL,Uri.parse("tel:966261111"));
+                startActivity(i);
             }
         });
 
