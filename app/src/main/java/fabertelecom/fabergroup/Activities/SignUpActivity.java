@@ -95,6 +95,11 @@ public class SignUpActivity extends ActionBarActivity {
         cancelar_Button = (Button) findViewById(R.id.cancelar_button);
     }
 
+    @Override
+    public void onBackPressed() {
+        Intent i = new Intent(SignUpActivity.this,MainActivity.class);
+        startActivity(i);
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

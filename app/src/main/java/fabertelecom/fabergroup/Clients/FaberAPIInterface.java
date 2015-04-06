@@ -24,7 +24,6 @@ public interface FaberAPIInterface {
     @POST("/api/tasks/{task}/start")
     void startTask(@Path("task") String taskId, Callback<Task> cb);
 
-
     @POST("/auth/sign_in")
     @Headers("Content-Type: application/json")
     void loginUser(@Query("email") String email, @Query("password") String password, Callback<JsonElement> cb);

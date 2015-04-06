@@ -11,155 +11,166 @@
     android:background="@color/azulOscuro"
     tools:context="fabertelecom.fabergroup.Activities.RegistroActivity" >
 
-    <TableLayout
-        android:id="@+id/TableLayout1"
-        android:layout_margin="2dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
-
-        <!--Registro-->
-        <TableRow
-            android:layout_marginLeft="6dp"
-            android:layout_marginRight="6dp"
-            android:layout_marginTop="6dp">
-
-            <TextView
-                android:id="@+id/registro_text_view"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:textColor="@color/blanco"
-                android:textStyle="bold"
-                android:text="Registro" />
-
-        </TableRow>
-
-        <!--Nombre-->
-        <TableRow
-            android:layout_marginLeft="6dp"
-            android:layout_marginRight="6dp">
-
-            <TextView
-                android:id="@+id/nombre_text_view"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:layout_gravity="center_vertical"
-                android:textColor="@color/blanco"
-                android:text="Nombre" />
-
-            <EditText
-                android:id="@+id/nombre_edit_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:textColor="@color/blanco"
-                android:textCursorDrawable="@color/blanco"
-                android:ems="10"/>
-
-        </TableRow>
-
-        <!--E-mail-->
-        <TableRow
-            android:layout_marginLeft="6dp"
-            android:layout_marginRight="6dp">
-
-            <TextView
-                android:id="@+id/email_text_view"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:layout_gravity="center_vertical"
-                android:textColor="@color/blanco"
-                android:text="E-mail" />
-
-            <EditText
-                android:id="@+id/email_edit_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:ems="10"
-                android:textColor="@color/blanco"
-                android:textCursorDrawable="@color/blanco"
-                android:inputType="textEmailAddress" />
-        </TableRow>
-
-        <!--Contraseña-->
-        <TableRow
-            android:layout_marginLeft="6dp"
-            android:layout_marginRight="6dp">
-
-            <TextView
-                android:id="@+id/contrasenya_text_view"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:layout_gravity="center_vertical"
-                android:textColor="@color/blanco"
-                android:text="Contraseña" />
-
-            <EditText
-                android:id="@+id/contrasenya_edit_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:ems="10"
-                android:textColor="@color/blanco"
-                android:textCursorDrawable="@color/blanco"
-                android:inputType="textPassword" >
-
-                <requestFocus />
-            </EditText>
-        </TableRow>
-
-        <!--Rep. contraseña-->
-        <TableRow
-            android:layout_marginLeft="6dp"
-            android:layout_marginRight="6dp"
-            android:layout_marginBottom="6dp">
-
-            <TextView
-                android:id="@+id/repcontrasenya_text_view"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:layout_gravity="center_vertical"
-                android:textColor="@color/blanco"
-                android:text="Rep. Contraseña"/>
-
-            <EditText
-                android:id="@+id/repcontrasenya_edit_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:ems="10"
-                android:textColor="@color/blanco"
-                android:textCursorDrawable="@color/blanco"
-                android:inputType="textPassword" />
-
-        </TableRow>
-    </TableLayout>
-
-    <LinearLayout
-        android:id="@+id/LinearLayout2"
+    <ScrollView
         android:layout_width="fill_parent"
         android:layout_height="wrap_content">
 
-        <Button
-            android:id="@+id/aceptar_button"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Aceptar" />
+    <LinearLayout
+        android:id="@+id/LinearLayout3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
-        <Button
-            android:id="@+id/cancelar_button"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:text="Cancelar" />
+        <TableLayout
+            android:id="@+id/TableLayout1"
+            android:layout_margin="2dp"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
 
+            <!--Registro-->
+            <TableRow
+                android:layout_marginLeft="6dp"
+                android:layout_marginRight="6dp"
+                android:layout_marginTop="6dp">
+
+                <TextView
+                    android:id="@+id/registro_text_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:textColor="@color/blanco"
+                    android:textStyle="bold"
+                    android:text="Registro" />
+
+            </TableRow>
+
+            <!--Nombre-->
+            <TableRow
+                android:layout_marginLeft="6dp"
+                android:layout_marginRight="6dp">
+
+                <TextView
+                    android:id="@+id/nombre_text_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_gravity="center_vertical"
+                    android:textColor="@color/blanco"
+                    android:text="Nombre" />
+
+                <EditText
+                    android:id="@+id/nombre_edit_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textColor="@color/blanco"
+                    android:textCursorDrawable="@color/blanco"
+                    android:ems="10"/>
+
+            </TableRow>
+
+            <!--E-mail-->
+            <TableRow
+                android:layout_marginLeft="6dp"
+                android:layout_marginRight="6dp">
+
+                <TextView
+                    android:id="@+id/email_text_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_gravity="center_vertical"
+                    android:textColor="@color/blanco"
+                    android:text="E-mail" />
+
+                <EditText
+                    android:id="@+id/email_edit_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:textColor="@color/blanco"
+                    android:textCursorDrawable="@color/blanco"
+                    android:inputType="textEmailAddress" />
+            </TableRow>
+
+            <!--Contraseña-->
+            <TableRow
+                android:layout_marginLeft="6dp"
+                android:layout_marginRight="6dp">
+
+                <TextView
+                    android:id="@+id/contrasenya_text_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_gravity="center_vertical"
+                    android:textColor="@color/blanco"
+                    android:text="Contraseña" />
+
+                <EditText
+                    android:id="@+id/contrasenya_edit_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:textColor="@color/blanco"
+                    android:textCursorDrawable="@color/blanco"
+                    android:inputType="textPassword" >
+
+                    <requestFocus />
+                </EditText>
+            </TableRow>
+
+            <!--Rep. contraseña-->
+            <TableRow
+                android:layout_marginLeft="6dp"
+                android:layout_marginRight="6dp"
+                android:layout_marginBottom="6dp">
+
+                <TextView
+                    android:id="@+id/repcontrasenya_text_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_gravity="center_vertical"
+                    android:textColor="@color/blanco"
+                    android:text="Rep. Contraseña"/>
+
+                <EditText
+                    android:id="@+id/repcontrasenya_edit_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:textColor="@color/blanco"
+                    android:textCursorDrawable="@color/blanco"
+                    android:inputType="textPassword" />
+
+            </TableRow>
+        </TableLayout>
+
+        <LinearLayout
+            android:id="@+id/LinearLayout2"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:id="@+id/aceptar_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Aceptar" />
+
+            <Button
+                android:id="@+id/cancelar_button"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="Cancelar" />
+
+        </LinearLayout>
     </LinearLayout>
-
+    </ScrollView>
 </LinearLayout>

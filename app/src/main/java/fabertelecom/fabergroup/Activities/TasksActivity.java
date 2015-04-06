@@ -1,6 +1,7 @@
 package fabertelecom.fabergroup.Activities;
 
 import android.app.ListActivity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -8,6 +9,10 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.Toast;
+
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+
 import java.util.List;
 import fabertelecom.fabergroup.Adapters.TasksAdapter;
 import fabertelecom.fabergroup.Clients.APIClient;
@@ -24,8 +29,12 @@ public class TasksActivity extends ListActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         updateTasks();
+    }
 
-
+    @Override
+    public void onBackPressed() {
+        Toast toast = Toast.makeText(TasksActivity.this, "Función no permitida", Toast.LENGTH_SHORT);
+        toast.show();
     }
 
     @Override
@@ -46,10 +55,25 @@ public class TasksActivity extends ListActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-        if (id == R.id.action_newtask) {
-            Intent i = new Intent(TasksActivity.this,NewTaskActivity.class);
-            startActivity(i);
+        switch(item.getItemId()){
+
+            case R.id.action_newtask:
+                Intent i = new Intent(TasksActivity.this,NewTaskActivity.class);
+                startActivity(i);
+                break;
+
+            case R.id.action_logout:
+                logoutUser();
+                break;
+
+            case R.id.action_actualizar:
+                Intent actualizar = getIntent();
+                finish();
+                startActivity(actualizar);
+                break;
+
+            default:
+                return true;
         }
         return super.onOptionsItemSelected(item);
     }
@@ -68,8 +92,7 @@ public class TasksActivity extends ListActivity {
         Toast.makeText(this, alert, Toast.LENGTH_LONG).show();
     }
 
-    public void updateTasks()
-    {
+    public void updateTasks(){
         showLoading();
         APIClient.getInstance().getTasks(new Callback<List<Task>>() {
             @Override
@@ -98,4 +121,9 @@ public class TasksActivity extends ListActivity {
         });
     }
 
+    public void logoutUser() {
+                APIClient.clearAuth(TasksActivity.this);
+                Intent i = new Intent(TasksActivity.this,LoginActivity.class);
+                startActivity(i);
+            }
 }

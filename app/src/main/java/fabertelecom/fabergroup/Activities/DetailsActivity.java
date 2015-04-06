@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.google.gson.JsonElement;
@@ -39,13 +40,17 @@ public class DetailsActivity extends ActionBarActivity {
     TextView hinicioTextView;
     TextView hfinTextView;
     TextView problemaTextView;
+    TextView solucionTextView;
     EditText solucionEditText;
     Button mapaButton;
+    Button llamarButton;
+    LinearLayout verticalLayout;
     LinearLayout solucionarLayout;
     LinearLayout resueltoLayout;
     LinearLayout comenzarLayout;
     Button comenzarButton;
     Button resolverButton;
+    ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,15 +86,25 @@ public class DetailsActivity extends ActionBarActivity {
         hinicioTextView = (TextView) findViewById(R.id.hinicio2_text_view);
         hfinTextView = (TextView) findViewById(R.id.hfin2_text_view);
         problemaTextView = (TextView) findViewById(R.id.problema2_text_view);
+        solucionTextView = (TextView) findViewById(R.id.solucion3_edit_text);
         solucionEditText = (EditText) findViewById(R.id.solucion_edit_text);
         mapaButton = (Button) findViewById(R.id.mapa_button);
+        llamarButton = (Button) findViewById(R.id.llamar_button);
+        verticalLayout = (LinearLayout) findViewById(R.id.vertical_layout);
         solucionarLayout = (LinearLayout) findViewById(R.id.solucionar_layout);
         resueltoLayout = (LinearLayout)findViewById(R.id.resuelto_layout);
         comenzarLayout = (LinearLayout)findViewById(R.id.comenzar_layout);
         comenzarButton = (Button)findViewById(R.id.comenzar_button);
         resolverButton = (Button)findViewById(R.id.resolver_button);
+        progressBar = (ProgressBar) findViewById(R.id.barraprogreso);
     }
 
+
+    @Override
+    public void onBackPressed() {
+        Intent i = new Intent(DetailsActivity.this,TasksActivity.class);
+        startActivity(i);
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -107,14 +122,14 @@ public class DetailsActivity extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void showLoading()
-    {
-        //TODO
+    public void showLoading(){
+        progressBar.setVisibility(View.VISIBLE);
+        verticalLayout.setVisibility(View.INVISIBLE);
     }
 
-    public void hideLoading()
-    {
-        //TODO
+    public void hideLoading(){
+        progressBar.setVisibility(View.INVISIBLE);
+        verticalLayout.setVisibility(View.VISIBLE);
     }
 
 
@@ -133,33 +148,55 @@ public class DetailsActivity extends ActionBarActivity {
         hinicioTextView.setText(hour_ini_text);
         hfinTextView.setText(hour_fin_text);
         problemaTextView.setText(task.getProblem());
+        solucionTextView.setText(task.getSolution());
 
 
         mapaButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openMaps();
+                abrirMapa();
             }
         });
+
+        llamarButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                abrirLlamada();
+            }
+        });
+
         comenzarLayout.setVisibility(View.INVISIBLE);
         resueltoLayout.setVisibility(View.INVISIBLE);
         solucionarLayout.setVisibility(View.INVISIBLE);
 
         if (task.getStatus().equals("idle")) {
            comenzarLayout.setVisibility(View.VISIBLE);
+           resueltoLayout.setVisibility(View.INVISIBLE);
+           solucionarLayout.setVisibility(View.INVISIBLE);
         }
         else if (task.getStatus().equals("working")) {
+            comenzarLayout.setVisibility(View.INVISIBLE);
+            resueltoLayout.setVisibility(View.INVISIBLE);
             solucionarLayout.setVisibility(View.VISIBLE);
         }
         else {
+            comenzarLayout.setVisibility(View.INVISIBLE);
             resueltoLayout.setVisibility(View.VISIBLE);
+            solucionarLayout.setVisibility(View.INVISIBLE);
         }
     }
 
-    private void openMaps()
+    private void abrirMapa()
     {
         String url = "http://maps.google.com/maps?q="+task.getClient_latitude()+","+task.getClient_longitude()+"("+task.getClient_name()+")";
         Intent i = new Intent(Intent.ACTION_VIEW,Uri.parse(url));
+        startActivity(i);
+    }
+
+    private void abrirLlamada()
+    {
+        String tel = task.getClient_phone();
+        Intent i = new Intent(Intent.ACTION_DIAL,Uri.parse("tel:"+tel));
         startActivity(i);
     }
 
