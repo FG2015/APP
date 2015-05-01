@@ -3,8 +3,10 @@ package fabertelecom.fabergroup.Activities;
 import android.app.ListActivity;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -28,10 +30,21 @@ import retrofit.client.Response;
 
 public class TasksActivity extends ListActivity {
 
+    ProgressDialog pDialog;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        updateTasks();
+
+        pDialog = new ProgressDialog(TasksActivity.this);
+        pDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+        pDialog.setTitle("Cargando tareas");
+        pDialog.setMessage("Espere un momento, por favor");
+        pDialog.setCancelable(false);
+        pDialog.setMax(100);
+
+        new BajarTareasTask().execute();
+
     }
 
     @Override
@@ -81,31 +94,17 @@ public class TasksActivity extends ListActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void showLoading(){
-     //  ProgressDialog progreso.show(TasksActivity.this,"Cargando...","Espere un momento, por favor",true,true);
-    }
-
-    public void hideLoading(){
-        // TODO
-    }
-
-    public void showAlert(String alert) {
-        Toast.makeText(this, alert, Toast.LENGTH_LONG).show();
-    }
-
-    public void updateTasks(){
-        showLoading();
+    private List<Task> updateTasks() {
+        List<Task> task = null;
         APIClient.getInstance().getTasks(new Callback<List<Task>>() {
             @Override
             public void success(List<Task> tasks, Response response) {
-                hideLoading();
                 TasksAdapter adaptador = new TasksAdapter(TasksActivity.this, tasks);
                 setListAdapter(adaptador);
             }
 
             @Override
             public void failure(RetrofitError error) {
-                hideLoading();
                 switch(error.getResponse().getStatus()){
 
                     case 401:
@@ -120,6 +119,45 @@ public class TasksActivity extends ListActivity {
                 }
             }
         });
+        return task;
+    }
+
+    private class BajarTareasTask extends AsyncTask<String, Integer, List<Task>> {
+        @Override
+        protected List<Task> doInBackground(String... urls) {
+            pDialog.setProgress(100);
+            pDialog.show();
+            return updateTasks();
+        }
+
+        @Override
+        protected void onProgressUpdate(Integer... values){
+            int progreso = values[0].intValue();
+            pDialog.setProgress(progreso);
+        }
+
+        @Override
+        protected void onPreExecute(){
+            pDialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
+                @Override
+                public void onCancel(DialogInterface dialog) {
+                    BajarTareasTask.this.cancel(true);
+                }
+            });
+            pDialog.setProgress(0);
+            pDialog.show();
+        }
+
+        @Override
+        protected void onCancelled() {
+            Toast.makeText(TasksActivity.this, "Tarea cancelada", Toast.LENGTH_SHORT).show();
+        }
+
+        @Override
+        protected void onPostExecute(List<Task> result){
+            pDialog.dismiss();
+            Toast.makeText(TasksActivity.this, "Tareas cargadas correctamente", Toast.LENGTH_SHORT).show();
+        }
     }
 
     public void logoutUser() {
