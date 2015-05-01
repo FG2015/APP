@@ -6,11 +6,16 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.ContextMenu;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
@@ -31,10 +36,13 @@ import retrofit.client.Response;
 public class TasksActivity extends ListActivity {
 
     ProgressDialog pDialog;
+    private Task task;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        registerForContextMenu(getListView());
 
         pDialog = new ProgressDialog(TasksActivity.this);
         pDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
@@ -63,10 +71,42 @@ public class TasksActivity extends ListActivity {
         startActivity(i);
     }
 
+    @Override public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+        super.onCreateContextMenu(menu, v, menuInfo);
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_context, menu);
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_tareas, menu);
         return true;
+    }
+
+    @Override
+    public boolean onContextItemSelected(MenuItem item) {
+        AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
+        switch (item.getItemId()) {
+            case R.id.detalles:
+                onListItemClick(getListView(), getListView(), ((AdapterView.AdapterContextMenuInfo) item.getMenuInfo()).position, item.getItemId());
+                return true;
+            case R.id.mapa:
+                TasksAdapter adapter = (TasksAdapter) getListAdapter();
+                String taskId = adapter.getTaskId(((AdapterView.AdapterContextMenuInfo) item.getMenuInfo()).position);
+                abrirMapa(taskId);
+                return true;
+            case R.id.llamarcliente:
+                TasksAdapter adapter2 = (TasksAdapter) getListAdapter();
+                String taskId2 = adapter2.getTaskId(((AdapterView.AdapterContextMenuInfo) item.getMenuInfo()).position);
+                llamarCliente(taskId2);
+                return true;
+            case R.id.delete:
+                Toast toast_borrar = Toast.makeText(TasksActivity.this, "Función sin implementar todavía", Toast.LENGTH_SHORT);
+                toast_borrar.show();
+                return true;
+            default:
+                return super.onContextItemSelected(item);
+        }
     }
 
     @Override
@@ -120,6 +160,42 @@ public class TasksActivity extends ListActivity {
             }
         });
         return task;
+    }
+
+    public void abrirMapa(String taskId)
+    {
+        APIClient.getInstance().getTask(taskId, new Callback<Task>() {
+            @Override
+            public void success(Task task, Response response) {
+                TasksActivity.this.task = task;
+                String url = "http://maps.google.com/maps?q=" + task.getClient_latitude() + "," + task.getClient_longitude() + "(" + task.getClient_name() + ")";
+                Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+                startActivity(i);
+            }
+
+            @Override
+            public void failure(RetrofitError error) {
+                //TODO - Show error
+            }
+        });
+    }
+
+    public void llamarCliente(String taskId)
+    {
+        APIClient.getInstance().getTask(taskId, new Callback<Task>() {
+            @Override
+            public void success(Task task, Response response) {
+                TasksActivity.this.task = task;
+                String tel = task.getClient_phone();
+                Intent i = new Intent(Intent.ACTION_DIAL,Uri.parse("tel:"+tel));
+                startActivity(i);
+            }
+
+            @Override
+            public void failure(RetrofitError error) {
+                //TODO - Show error
+            }
+        });
     }
 
     private class BajarTareasTask extends AsyncTask<String, Integer, List<Task>> {

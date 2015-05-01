@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:id="@+id/detalles" android:title="Más detalles"/>
+
+    <item android:id="@+id/mapa" android:title="¿Dónde ir?"/>
+
+    <item android:id="@+id/llamarcliente" android:title="Llamar al cliente"/>
+
+    <item android:id="@+id/delete" android:title="Borrar"/>
+
+</menu>
+
