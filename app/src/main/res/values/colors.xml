@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="color_idle">#9AD9DC</color>
+    <color name="color_working">#FFFD55</color>
+    <color name="color_finish">#76D969</color>
+</resources>
